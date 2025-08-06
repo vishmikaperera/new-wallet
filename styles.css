@@ -1,0 +1,346 @@
+:root {
+    /* Modern Color Scheme */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f5f5f7;
+    --bg-glass: rgba(255, 255, 255, 0.7);
+    --text-primary: #1d1d1f;
+    --text-secondary: #86868b;
+    
+    /* Colorful Gradients */
+    --gradient-blue: linear-gradient(135deg, #0071e3, #00a0ff);
+    --gradient-purple: linear-gradient(135deg, #8E2DE2, #4A00E0);
+    --gradient-green: linear-gradient(135deg, #00b09b, #96c93d);
+    --gradient-orange: linear-gradient(135deg, #f12711, #f5af19);
+    --gradient-pink: linear-gradient(135deg, #FF0080, #7928CA);
+    
+    /* Category Colors */
+    --color-financial: #00b09b;
+    --color-social: #8E2DE2;
+    --color-work: #0071e3;
+    --color-personal: #FF0080;
+    
+    /* Accent Colors */
+    --accent-color: #0071e3;
+    --accent-gradient: var(--gradient-blue);
+    --border-color: rgba(210, 210, 215, 0.5);
+    --error-color: #ff3b30;
+    --success-color: #34c759;
+    
+    /* Modern Shadows */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.15);
+    
+    /* Glass Effect */
+    --glass-background: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    
+    /* Spacing */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+}
+
+/* Dark Theme */
+body.dark-theme {
+    --bg-primary: #1d1d1f;
+    --bg-secondary: #2d2d2f;
+    --text-primary: #f5f5f7;
+    --text-secondary: #a1a1a6;
+    --border-color: #424245;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.5;
+}
+
+.app-container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 250px;
+    background-color: var(--bg-secondary);
+    border-right: 1px solid var(--border-color);
+    padding: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-header {
+    padding: var(--spacing-md) 0;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.logo {
+    width: 32px;
+    height: 32px;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    margin-top: var(--spacing-lg);
+}
+
+.nav-item {
+    padding: var(--spacing-md);
+    border-radius: 8px;
+    border: none;
+    background: none;
+    color: var(--text-primary);
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.nav-item:hover {
+    background-color: rgba(0, 113, 227, 0.1);
+}
+
+.nav-item.active {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.nav-item.bottom {
+    margin-top: auto;
+}
+
+/* Main Content Styles */
+.main-content {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: var(--spacing-lg);
+}
+
+/* Screen Styles */
+.screen {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.screen.hidden {
+    display: none;
+}
+
+/* Auth Screen */
+.auth-container {
+    max-width: 400px;
+    margin: 100px auto;
+    text-align: center;
+}
+
+.biometric-auth {
+    margin: var(--spacing-xl) 0;
+}
+
+#biometric-button {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: var(--spacing-md) var(--spacing-xl);
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+#biometric-button:hover {
+    transform: scale(1.02);
+}
+
+.password-input {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+}
+
+/* Toolbar */
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.search-bar {
+    position: relative;
+    flex-grow: 1;
+    margin-right: var(--spacing-lg);
+}
+
+.search-bar input {
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-xl);
+    padding-left: 40px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.search-bar i {
+    position: absolute;
+    left: var(--spacing-md);
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+}
+
+/* Password List */
+.passwords-list {
+    display: grid;
+    gap: var(--spacing-md);
+}
+
+.password-item {
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-md);
+    background-color: var(--bg-secondary);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.password-item:hover {
+    transform: translateX(4px);
+}
+
+.item-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    margin-right: var(--spacing-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-primary);
+}
+
+.item-icon img {
+    width: 24px;
+    height: 24px;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: var(--spacing-lg);
+}
+
+label {
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    color: var(--text-secondary);
+}
+
+input[type="text"],
+input[type="password"],
+input[type="url"],
+select {
+    width: 100%;
+    padding: var(--spacing-md);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.password-input-group {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.password-input-group input {
+    flex-grow: 1;
+}
+
+.password-input-group button {
+    padding: var(--spacing-md);
+    border: none;
+    background: none;
+    color: var(--accent-color);
+    cursor: pointer;
+}
+
+/* Button Styles */
+.primary-button {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: var(--spacing-md) var(--spacing-xl);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.primary-button:hover {
+    background-color: #0077ed;
+}
+
+.secondary-button {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: var(--spacing-md) var(--spacing-xl);
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* Settings Screen */
+.settings-form {
+    max-width: 600px;
+}
+
+.setting-group {
+    margin-bottom: var(--spacing-xl);
+    padding: var(--spacing-lg);
+    background-color: var(--bg-secondary);
+    border-radius: 8px;
+}
+
+.setting-group h3 {
+    margin-bottom: var(--spacing-md);
+}
+
+/* OTP Display */
+.otp-display {
+    font-family: monospace;
+    font-size: 24px;
+    margin: var(--spacing-md) 0;
+    padding: var(--spacing-md);
+    background-color: var(--bg-secondary);
+    border-radius: 8px;
+    text-align: center;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.screen:not(.hidden) {
+    animation: fadeIn 0.3s ease-out;
+}

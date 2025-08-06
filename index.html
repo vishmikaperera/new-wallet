@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Secure Password Wallet</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./styles/output.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <img src="assets/logo.png" alt="Logo" class="logo">
+                <h1>Password Wallet</h1>
+            </div>
+            <nav class="sidebar-nav">
+                <button class="nav-item active" data-view="all">
+                    <i class="fas fa-key"></i>
+                    All Passwords
+                </button>
+                <button class="nav-item" data-view="favorites">
+                    <i class="fas fa-star"></i>
+                    Favorites
+                </button>
+                <button class="nav-item" data-view="categories">
+                    <i class="fas fa-folder"></i>
+                    Categories
+                </button>
+                <button class="nav-item" data-view="secure-notes">
+                    <i class="fas fa-note-sticky"></i>
+                    Secure Notes
+                </button>
+                <button class="nav-item bottom" data-view="settings">
+                    <i class="fas fa-cog"></i>
+                    Settings
+                </button>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Auth Screen -->
+            <div id="auth-screen" class="screen">
+                <div class="auth-container">
+                    <h2>Welcome Back</h2>
+                    <div class="biometric-auth">
+                        <button id="biometric-button">
+                            <i class="fas fa-fingerprint"></i>
+                            Use Touch ID
+                        </button>
+                        <p>or use your master password</p>
+                    </div>
+                    <div class="password-input">
+                        <input type="password" id="master-password" placeholder="Enter Master Password">
+                        <button id="unlock-btn">Unlock</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Passwords List Screen -->
+            <div id="passwords-screen" class="screen hidden">
+                <div class="toolbar">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="search" placeholder="Search passwords...">
+                    </div>
+                    <button id="add-new" class="primary-button">
+                        <i class="fas fa-plus"></i>
+                        Add New
+                    </button>
+                </div>
+
+                <div class="passwords-list" id="passwords-list">
+                    <!-- Passwords will be populated here -->
+                </div>
+            </div>
+
+            <!-- Password Details/Edit Screen -->
+            <div id="password-detail-screen" class="screen hidden">
+                <div class="detail-header">
+                    <button class="back-button">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <h2>Password Details</h2>
+                    <button class="delete-button">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+
+                <div class="detail-form">
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" id="title" placeholder="Website or App Name">
+                    </div>
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" id="username" placeholder="Email or Username">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <div class="password-input-group">
+                            <input type="password" id="password" placeholder="Password">
+                            <button id="generate-password">
+                                <i class="fas fa-dice"></i>
+                            </button>
+                            <button id="show-password">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Website URL</label>
+                        <input type="url" id="url" placeholder="https://example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select id="category">
+                            <option value="login">Login</option>
+                            <option value="financial">Financial</option>
+                            <option value="social">Social</option>
+                            <option value="work">Work</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="enable-otp">
+                            Enable 2FA/OTP
+                        </label>
+                        <div id="otp-setup" class="hidden">
+                            <div id="qr-code"></div>
+                            <input type="text" id="otp-secret" placeholder="Enter OTP Secret">
+                            <div id="current-otp" class="otp-display"></div>
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <button id="save-password" class="primary-button">Save</button>
+                        <button id="cancel" class="secondary-button">Cancel</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Screen -->
+            <div id="settings-screen" class="screen hidden">
+                <h2>Settings</h2>
+                <div class="settings-form">
+                    <div class="setting-group">
+                        <h3>Security</h3>
+                        <label>
+                            <input type="checkbox" id="enable-biometric">
+                            Enable Biometric Authentication
+                        </label>
+                        <button id="change-master-password">Change Master Password</button>
+                    </div>
+                    <div class="setting-group">
+                        <h3>Backup & Sync</h3>
+                        <button id="export-data">Export Passwords</button>
+                        <button id="import-data">Import Passwords</button>
+                    </div>
+                    <div class="setting-group">
+                        <h3>Appearance</h3>
+                        <label>
+                            <input type="checkbox" id="dark-mode">
+                            Dark Mode
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="renderer.js"></script>
+</body>
+</html>

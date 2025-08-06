@@ -1,0 +1,231 @@
+/* Advanced Color Effects */
+:root {
+    /* Vibrant Gradients */
+    --gradient-rainbow: linear-gradient(45deg, 
+        #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff);
+    --gradient-sunset: linear-gradient(45deg, #ff512f, #dd2476, #ff512f);
+    --gradient-ocean: linear-gradient(45deg, #2193b0, #6dd5ed);
+    --gradient-fire: linear-gradient(45deg, #ff416c, #ff4b2b);
+    --gradient-mint: linear-gradient(45deg, #00b09b, #96c93d);
+    --gradient-royal: linear-gradient(45deg, #141e30, #243b55);
+    
+    /* Neon Colors */
+    --neon-blue: #00ff9d;
+    --neon-pink: #ff00ff;
+    --neon-yellow: #ffff00;
+    --neon-green: #39ff14;
+    
+    /* Glow Effects */
+    --glow-primary: 0 0 10px rgba(0, 113, 227, 0.5);
+    --glow-success: 0 0 10px rgba(52, 199, 89, 0.5);
+    --glow-warning: 0 0 10px rgba(255, 204, 0, 0.5);
+    --glow-danger: 0 0 10px rgba(255, 59, 48, 0.5);
+}
+
+/* Rainbow Border Animation */
+.rainbow-border {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.rainbow-border::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: var(--gradient-rainbow);
+    z-index: -1;
+    animation: rotate 4s linear infinite;
+    border-radius: 18px;
+}
+
+/* Animated Background Gradient */
+.animated-bg {
+    background: var(--gradient-sunset);
+    background-size: 200% 200%;
+    animation: gradientMove 15s ease infinite;
+}
+
+/* Neon Glow Effect */
+.neon-glow {
+    text-shadow: 0 0 5px var(--neon-blue),
+                 0 0 10px var(--neon-blue),
+                 0 0 20px var(--neon-blue),
+                 0 0 40px var(--neon-blue);
+    animation: neonPulse 1.5s ease-in-out infinite alternate;
+}
+
+/* Color Shift on Hover */
+.color-shift {
+    transition: all 0.3s ease;
+    background: var(--gradient-ocean);
+    background-size: 200% 200%;
+}
+
+.color-shift:hover {
+    background: var(--gradient-fire);
+    background-size: 200% 200%;
+    transform: scale(1.05);
+}
+
+/* Prismatic Text Effect */
+.prismatic-text {
+    background: var(--gradient-rainbow);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: rainbow 8s linear infinite;
+}
+
+/* Aurora Effect */
+.aurora-bg {
+    position: relative;
+    overflow: hidden;
+}
+
+.aurora-bg::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center,
+        rgba(255,255,255,0.1) 0%,
+        rgba(255,255,255,0.05) 25%,
+        rgba(255,255,255,0) 50%);
+    transform-origin: center;
+    animation: aurora 20s linear infinite;
+}
+
+/* New Animations */
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes neonPulse {
+    from { opacity: 0.8; }
+    to { opacity: 1; }
+}
+
+@keyframes rainbow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes aurora {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Interactive Elements */
+.interactive-card {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.interactive-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at var(--mouse-x) var(--mouse-y),
+                rgba(255,255,255,0.2) 0%,
+                rgba(255,255,255,0) 50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.interactive-card:hover::before {
+    opacity: 1;
+}
+
+/* Liquid Button Effect */
+.liquid-button {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.liquid-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 300px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.5s ease;
+}
+
+.liquid-button:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Magnetic Effect */
+.magnetic {
+    transition: transform 0.3s ease;
+    transform-style: preserve-3d;
+}
+
+/* Success Animation */
+.success-animation {
+    position: relative;
+}
+
+.success-animation::before {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    color: var(--success-color);
+    font-size: 24px;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.success-animation.active::before {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+/* Password Strength Indicator */
+.strength-indicator {
+    height: 4px;
+    border-radius: 2px;
+    background: var(--bg-secondary);
+    overflow: hidden;
+    position: relative;
+}
+
+.strength-indicator::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: var(--strength);
+    background: linear-gradient(90deg,
+        var(--error-color) 0%,
+        var(--warning-color) 50%,
+        var(--success-color) 100%);
+    transition: width 0.3s ease;
+}

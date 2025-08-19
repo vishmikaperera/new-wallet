@@ -34,10 +34,11 @@ function createWindow() {
 app.whenReady().then(async () => {
     try {
         // Initialize database
-        await initializeDatabase();
+        const db = await initializeDatabase();
         logger.info('Database initialized successfully');
 
-        // Initialize IPC handlers
+        // Set database and initialize IPC handlers
+        IpcHandler.setDatabase(db);
         await IpcHandler.initialize();
         logger.info('IPC handlers initialized successfully');
 
@@ -61,8 +62,14 @@ process.on('unhandledRejection', (error) => {
     logger.error('Unhandled Rejection:', error);
 });
 
+// Cleanup when app quits
+app.on('before-quit', () => {
+    IpcHandler.cleanup();
+});
+
 // Quit when all windows are closed
 app.on('window-all-closed', () => {
+  IpcHandler.cleanup();
   if (process.platform !== 'darwin') {
     app.quit();
   }
